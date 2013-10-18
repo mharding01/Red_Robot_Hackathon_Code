@@ -70,7 +70,7 @@ void loop()
     sum_dataGy += raw_dataGy;
   }
   av_dataGy = sum_dataGy / 20;
-  dps = map(av_dataGy, 0, 1023, -500, 500);  // degrees/s units in range +/- 500 dps
+  dps = map(av_dataGy, 0, 4095, -500, 500);  // degrees/s units in range +/- 500 dps
   
   // Printing accel. readings in g's, then tab over for gyro readings in dps
   Serial.print("|  ");
