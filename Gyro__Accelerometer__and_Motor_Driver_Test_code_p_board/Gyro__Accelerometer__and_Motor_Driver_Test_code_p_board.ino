@@ -4,9 +4,13 @@
 // and gyro and printed to the serial module.
 // Accordingly, PWM signals are output to motor controller.
 
-#include <Stepper.h>
+#include <Stepper.h> // Will be driving a Stepper motor
+#define STEPS XXX // set to number of steps on motor
 
-int motorPin = 9;
+
+Stepper stepper(STEPS, 8, 9 , 10, 11);
+
+int motorPin = 3; // PWM capable
 int analogAxIn = A0;
 int analogGyIn = A5;
 
@@ -39,6 +43,7 @@ void loop()
   Serial.print(gravs);
   Serial.print("g  \t  ");
   Serial.println("dps  |");
+  
   
 }
 
