@@ -18,6 +18,7 @@ int raw_dataAx;
 int raw_dataGy;
 
 int motorSpeed; // in RPMs
+int motorSteps; // number of steps
 
 float gravs;  // gravitational units
 float dps;  // degrees per second
@@ -47,8 +48,11 @@ void loop()
   Serial.print("g  \t  ");
   Serial.println(dps  + " |");
   
-  //Drive stepper motor fast when dps is large
+  //Drive stepper motor fast when dps is large, smaller as dps decreases
+  // Maximum 60 RPM, minimum 5RPM (?)
+  motorSpeed = map(dps, -500, 500, 5, 60);
   stepper.setSpeed(motorSpeed);
+  // Number of steps determined 
   
 }
 
