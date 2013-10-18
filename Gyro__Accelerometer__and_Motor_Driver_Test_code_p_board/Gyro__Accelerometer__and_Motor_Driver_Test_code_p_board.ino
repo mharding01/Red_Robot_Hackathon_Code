@@ -21,6 +21,7 @@ void setup()
 {
    pinMode(motorPin, OUTPUT); 
    Serial.begin(9600);
+   Serial.println("|  Accelerometer Readings  |  Gyro Readings  |");
 }
 
 void loop()
@@ -32,9 +33,11 @@ void loop()
   raw_dataGy = analogRead(analogGyIn);
   dps = map(raw_dataGy, 0, 1023, -500, 500);  // degrees/s units in range +/- 500 dps
   
-  Serial.print("Accelerometer Reads: ");
+  // Printing accel. readings in g's, then tab over for gyro readings in dps
+  Serial.print("|  ");
   Serial.print(gravs);
-  Serial.print(
+  Serial.print("g  \t  ");
+  Serial.print("dps  |");
   
 }
 
