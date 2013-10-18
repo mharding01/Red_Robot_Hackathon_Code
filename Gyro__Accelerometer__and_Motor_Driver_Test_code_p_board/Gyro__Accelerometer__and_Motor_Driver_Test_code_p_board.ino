@@ -4,16 +4,14 @@
 // and gyro and printed to the serial module.
 // Accordingly, PWM signals are output to motor controller.
 
-#include <Stepper.h> // Will be driving a Stepper motor
 #define STEPS XXX // set to number of steps on motor
 #define BACK_MAX_G -0.10
 #define FRONT_MAX_G -1.02
 #define PARALLEL_G -0.61
 
 
-//Stepper stepper(STEPS, 8, 9 , 10, 11);
-
-int motorPin = 3; // PWM capable
+int stepPin = 3; // PWM capable
+int dirPin = 4;
 int analogAxIn = A0;
 int analogGyIn = A5;
 
@@ -36,7 +34,8 @@ float my_map(float x, float in_min, float in_max, float out_min, float out_max);
 
 void setup()
 {
-   pinMode(motorPin, OUTPUT); 
+   pinMode(stepPin, OUTPUT); 
+   pinMode(dirPin, OUTPUT);
    
    sum_dataAx =0;
    av_dataAx = 0;
@@ -80,13 +79,14 @@ void loop()
   Serial.print(dps);
   Serial.println(" dps  |");
   
+  Serial.println("Stepping Motor...");
 
   //Serial.print(raw_dataAx);
   //Serial.println(" raw analog  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
   // Maximum 60 RPM, minimum 5RPM (?)
- // motorSpeed = map(dps, -500, 500, 5, 60);
+   motorSpeed = map(dps, -500, 500, 5, 60);
  // stepper.setSpeed(motorSpeed);
   // Number of steps determined 
   
