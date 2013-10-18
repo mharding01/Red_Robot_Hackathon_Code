@@ -16,11 +16,7 @@ int analogGyIn = A5;
 
 int i; // for loop counter
 int raw_dataAx;
-int sum_dataAx;
-int av_dataAX;
 int raw_dataGy;
-int sum_dataGy;
-int av_dataGy;
 
 int motorSpeed; // in RPMs
 int motorSteps; // number of steps
@@ -28,11 +24,21 @@ int motorSteps; // number of steps
 float gravs;  // gravitational units
 float dps;  // degrees per second
 
+int sum_dataAx;
+int av_dataAx;
+int sum_dataGy;
+int av_dataGy;
+
 float my_map(float x, float in_min, float in_max, float out_min, float out_max);
 
 void setup()
 {
    pinMode(motorPin, OUTPUT); 
+   
+   sum_dataAx =0;
+   av_dataAx = 0;
+   sum_dataGy = 0;
+   av_dataGy = 0;
   // stepper.setSpeed(motorSpeed); // sets speed of motor to 30 RPMS ...
    Serial.begin(9600);
    Serial.println("|  Accelerometer Readings  |  Gyro Readings  |");
@@ -41,6 +47,11 @@ void setup()
 void loop()
 {
   delay(50);  // too buffer for Serial module readability
+  
+   sum_dataAx =0;
+   av_dataAx = 0;
+   sum_dataGy = 0;
+   av_dataGy = 0;
   
   for(i = 0; i<20; i++)
   {
