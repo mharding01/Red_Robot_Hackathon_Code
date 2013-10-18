@@ -76,8 +76,12 @@ void loop()
   Serial.print("|  ");
   Serial.print(gravs);
   Serial.print("g  \t  ");
-  Serial.print(raw_dataAx);
-  Serial.println(" raw analog  |");
+  Serial.print(dps);
+  Serial.println(" dps  |");
+  
+
+  //Serial.print(raw_dataAx);
+  //Serial.println(" raw analog  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
   // Maximum 60 RPM, minimum 5RPM (?)
