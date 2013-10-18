@@ -4,6 +4,7 @@
 // and gyro and printed to the serial module.
 // Accordingly, PWM signals are output to motor controller.
 
+#include <Stepper.h>
 
 int motorPin = 9;
 int analogAxIn = A0;
