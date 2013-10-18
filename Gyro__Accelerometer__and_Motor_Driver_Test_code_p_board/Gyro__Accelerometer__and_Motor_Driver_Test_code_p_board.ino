@@ -17,6 +17,8 @@ int analogGyIn = A5;
 int raw_dataAx;
 int raw_dataGy;
 
+int motorSpeed; // in RPMs
+
 float gravs;  // gravitational units
 float dps;  // degrees per second
 
@@ -25,6 +27,7 @@ float my_map(float x, float in_min, float in_max, float out_min, float out_max);
 void setup()
 {
    pinMode(motorPin, OUTPUT); 
+   stepper.setSpeed(motorSpeed); // sets speed of motor to 30 RPMS ...
    Serial.begin(9600);
    Serial.println("|  Accelerometer Readings  |  Gyro Readings  |");
 }
@@ -42,8 +45,10 @@ void loop()
   Serial.print("|  ");
   Serial.print(gravs);
   Serial.print("g  \t  ");
-  Serial.println("dps  |");
+  Serial.println(dps  + " |");
   
+  //Drive stepper motor fast when dps is large
+  stepper.setSpeed(motorSpeed);
   
 }
 
