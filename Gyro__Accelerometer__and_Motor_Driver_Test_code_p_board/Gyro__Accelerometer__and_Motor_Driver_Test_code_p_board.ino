@@ -8,6 +8,7 @@
 #define STEPS XXX // set to number of steps on motor
 #define BACK_MAX_G -0.10
 #define FRONT_MAX_G -1.02
+#define PARALLEL_G -0.61
 
 
 //Stepper stepper(STEPS, 8, 9 , 10, 11);
@@ -71,7 +72,7 @@ void loop()
   }
   av_dataGy = sum_dataGy / 20;
   dps = map(av_dataGy, 0, 4095, -500/4, 500/4);  // degrees/s units in range +/- 500 dps
-  dps += 11*10; // Data filtering as zero tends to be around -11
+  dps += 11*10; // Data filtering as zero tends to be around -11*10
   // Printing accel. readings in g's, then tab over for gyro readings in dps
   Serial.print("|  ");
   Serial.print(gravs);
