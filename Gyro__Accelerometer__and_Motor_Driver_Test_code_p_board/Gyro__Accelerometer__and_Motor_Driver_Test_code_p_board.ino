@@ -5,4 +5,16 @@
 // Accordingly, PWM signals are output to motor controller.
 
 
+int motorPin = 9;
+int analogAxIn = A0;
+int analogGyIn = A5;
 
+void setup()
+{
+   pinMode(motorPin, OUTPUT); 
+}
+
+void loop()
+{
+  
+}
