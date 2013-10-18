@@ -21,6 +21,7 @@ int raw_dataGy;
 
 int motorSpeed; // in RPMs
 int motorSteps; // number of steps
+int dirMotor = HIGH; // set to high intially
 
 float gravs;  // gravitational units
 float dps;  // degrees per second
@@ -63,6 +64,14 @@ void loop()
   
   av_dataAx = sum_dataAx / 20;
   gravs = my_map((float)av_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
+  if (gravs < 0)
+  {
+    dirMotor = HIGH;  // this is to test
+  }
+  else if (gravs > 0)
+  {
+    dirMotor = FALSE; // this is to test
+  }
   
   for(i = 0; i<20; i++)
   {
@@ -79,18 +88,18 @@ void loop()
   Serial.print(dps);
   Serial.println(" dps  |");
   
-  Serial.println("Stepping Motor...");
-
+  Serial.print("Stepping Motor... dirMotor = ");
+  Serial.println(dirMotor);
   //Serial.print(raw_dataAx);
   //Serial.println(" raw analog  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
-  // Maximum 60 RPM, minimum 5RPM (?)
-   motorSpeed = map(dps, -500/4, 500/4, 5, 60);
-   
+  // Maximum 60 RPM, minimum 0RPM (?)
+   motorSpeed = map(dps, -500/4, 500/4, 0, 60);
   // Number of steps determined by gravity angle - how close to parallel
   // Maximum number of steps 4, Minimum number of steps 0 
    motorSteps = my_map(gravs, -1.5, 1.5, 0.0, 4.0);
+   
  // stepper.setSpeed(motorSpeed);
   // Number of steps determined 
   
