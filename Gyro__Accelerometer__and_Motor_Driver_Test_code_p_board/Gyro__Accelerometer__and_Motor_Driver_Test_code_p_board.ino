@@ -88,18 +88,21 @@ void loop()
   Serial.print(dps);
   Serial.println(" dps  |");
   
-  Serial.print("Stepping Motor... dirMotor = ");
-  Serial.println(dirMotor);
+  Serial.print("\t Stepping Motor... dirMotor = ");
+  Serial.print(dirMotor);
   //Serial.print(raw_dataAx);
   //Serial.println(" raw analog  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
   // Maximum 60 RPM, minimum 0RPM (?)
    motorSpeed = map(dps, -500/4, 500/4, 0, 60);
+   Serial.print("  Speed = ");
+   Serial.print(motorSpeed);
   // Number of steps determined by gravity angle - how close to parallel
   // Maximum number of steps 4, Minimum number of steps 0 
    motorSteps = my_map(gravs, -1.5, 1.5, 0.0, 4.0);
-   
+   Serial.print("  Steps");
+   Serial.println(motorSteps);
    // Drive motor several steps, with delay in between steps
    digitalWrite(dirPin, dirMotor);
    for (i = 0; i < motorSteps; i++)
