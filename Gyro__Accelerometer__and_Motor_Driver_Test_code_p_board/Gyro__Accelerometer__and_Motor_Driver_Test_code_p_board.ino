@@ -8,7 +8,7 @@
 #define STEPS XXX // set to number of steps on motor
 
 
-Stepper stepper(STEPS, 8, 9 , 10, 11);
+//Stepper stepper(STEPS, 8, 9 , 10, 11);
 
 int motorPin = 3; // PWM capable
 int analogAxIn = A0;
@@ -28,7 +28,7 @@ float my_map(float x, float in_min, float in_max, float out_min, float out_max);
 void setup()
 {
    pinMode(motorPin, OUTPUT); 
-   stepper.setSpeed(motorSpeed); // sets speed of motor to 30 RPMS ...
+  // stepper.setSpeed(motorSpeed); // sets speed of motor to 30 RPMS ...
    Serial.begin(9600);
    Serial.println("|  Accelerometer Readings  |  Gyro Readings  |");
 }
@@ -46,12 +46,13 @@ void loop()
   Serial.print("|  ");
   Serial.print(gravs);
   Serial.print("g  \t  ");
-  Serial.println(dps  + " |");
+  Serial.print(dps);
+  Serial.print(" dps  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
   // Maximum 60 RPM, minimum 5RPM (?)
-  motorSpeed = map(dps, -500, 500, 5, 60);
-  stepper.setSpeed(motorSpeed);
+ // motorSpeed = map(dps, -500, 500, 5, 60);
+ // stepper.setSpeed(motorSpeed);
   // Number of steps determined 
   
 }
