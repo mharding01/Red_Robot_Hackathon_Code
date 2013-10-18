@@ -47,7 +47,7 @@ void loop()
   Serial.print(gravs);
   Serial.print("g  \t  ");
   Serial.print(dps);
-  Serial.print(" dps  |");
+  Serial.println(" dps  |");
   
   //Drive stepper motor fast when dps is large, smaller as dps decreases
   // Maximum 60 RPM, minimum 5RPM (?)
