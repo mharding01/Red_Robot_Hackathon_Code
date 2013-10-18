@@ -60,7 +60,7 @@ void loop()
   }
   
   av_dataAx = sum_dataAx / 20;
-  gravs = my_map((float)av_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
+  gravs = my_map((float)av_dataAx, 0.0, 1023.0, -6, 6);  // gravitational units in range -1.5<g<1.5
   
   for(i = 0; i<20; i++)
   {
