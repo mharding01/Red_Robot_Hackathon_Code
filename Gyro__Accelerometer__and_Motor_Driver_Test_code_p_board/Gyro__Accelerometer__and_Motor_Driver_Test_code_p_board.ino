@@ -108,9 +108,9 @@ void loop()
    for (i = 0; i < motorSteps; i++)
    {
      digitalWrite(stepPin, HIGH);
-     delay(5);
+     delay(1);
      digitalWrite(stepPin, LOW);
-     delay(5);
+     delay(1);
    }
    
   
