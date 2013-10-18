@@ -28,7 +28,7 @@ void loop()
   delay(50);  // too buffer for Serial module readability
   
   raw_dataAx = analogRead(analogAxIn);
-  gravs = map(raw_dataAx, 0, 1023, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
+  gravs = my_map((float)raw_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
   raw_dataGy = analogRead(analogGyIn);
   
   Serial.print("Accelerometer Reads: ");
