@@ -37,7 +37,7 @@ void loop()
   Serial.print("|  ");
   Serial.print(gravs);
   Serial.print("g  \t  ");
-  Serial.print("dps  |");
+  Serial.println("dps  |");
   
 }
 
