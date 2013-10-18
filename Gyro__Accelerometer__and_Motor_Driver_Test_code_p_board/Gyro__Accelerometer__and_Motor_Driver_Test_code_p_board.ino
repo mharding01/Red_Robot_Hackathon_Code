@@ -14,8 +14,13 @@ int motorPin = 3; // PWM capable
 int analogAxIn = A0;
 int analogGyIn = A5;
 
+int i; // for loop counter
 int raw_dataAx;
+int sum_dataAx;
+int av_dataAX;
 int raw_dataGy;
+int sum_dataGy;
+int av_dataGy;
 
 int motorSpeed; // in RPMs
 int motorSteps; // number of steps
@@ -37,10 +42,22 @@ void loop()
 {
   delay(50);  // too buffer for Serial module readability
   
-  raw_dataAx = analogRead(analogAxIn);
-  gravs = my_map((float)raw_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
-  raw_dataGy = analogRead(analogGyIn);
-  dps = map(raw_dataGy, 0, 1023, -500, 500);  // degrees/s units in range +/- 500 dps
+  for(i = 0; i<20; i++)
+  {
+    raw_dataAx = analogRead(analogAxIn);
+    sum_dataAx += raw_dataAx;
+  }
+  
+  av_dataAx = sum_dataAx / 20;
+  gravs = my_map((float)av_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
+  
+  for(i = 0; i<20; i++)
+  {
+    raw_dataGy = analogRead(analogGyIn);
+    sum_dataGy += raw_dataGy;
+  }
+  av_dataGy = sum_dataGy / 20;
+  dps = map(sum_dataGy, 0, 1023, -500, 500);  // degrees/s units in range +/- 500 dps
   
   // Printing accel. readings in g's, then tab over for gyro readings in dps
   Serial.print("|  ");
