@@ -70,7 +70,7 @@ void loop()
   }
   else if (gravs > 0)
   {
-    dirMotor = FALSE; // this is to test
+    dirMotor = LOW; // this is to test
   }
   
   for(i = 0; i<20; i++)
@@ -100,8 +100,16 @@ void loop()
   // Maximum number of steps 4, Minimum number of steps 0 
    motorSteps = my_map(gravs, -1.5, 1.5, 0.0, 4.0);
    
- // stepper.setSpeed(motorSpeed);
-  // Number of steps determined 
+   // Drive motor several steps, with delay in between steps
+   digitalWrite(dirPin, dirMotor);
+   for (i = 0; i < motorSteps; i++)
+   {
+     digitalWrite(stepPin, HIGH);
+     delay(10);
+     digitalWrite(stepPin, LOW);
+     delay(10);
+   }
+   
   
 }
 
