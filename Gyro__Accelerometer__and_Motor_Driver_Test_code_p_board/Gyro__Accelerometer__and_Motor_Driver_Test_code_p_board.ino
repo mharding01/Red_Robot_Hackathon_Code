@@ -6,6 +6,8 @@
 
 #include <Stepper.h> // Will be driving a Stepper motor
 #define STEPS XXX // set to number of steps on motor
+#define BACK_MAX_G -0.10
+#define FRONT_MAX_G -1.02
 
 
 //Stepper stepper(STEPS, 8, 9 , 10, 11);
