@@ -30,9 +30,10 @@ void loop()
   raw_dataAx = analogRead(analogAxIn);
   gravs = my_map((float)raw_dataAx, 0.0, 1023.0, -1.5, 1.5);  // gravitational units in range -1.5<g<1.5
   raw_dataGy = analogRead(analogGyIn);
+  dps = map(raw_dataGy, 0, 1023, -500, 500);  // degrees/s units in range +/- 500 dps
   
   Serial.print("Accelerometer Reads: ");
-  Serial.print(raw_dataAx);
+  Serial.print(gravs);
   Serial.print(
   
 }
