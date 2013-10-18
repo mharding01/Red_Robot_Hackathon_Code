@@ -100,7 +100,7 @@ void loop()
    Serial.print(motorSpeed);
   // Number of steps determined by gravity angle - how close to parallel
   // Maximum number of steps 4, Minimum number of steps 0 
-   motorSteps = my_map(gravs, -1.5, 1.5, 0.0, 4.0);
+   motorSteps = (int)my_map(gravs, -1.5, 1.5, 0.0, 4.0);
    Serial.print("  Steps");
    Serial.println(motorSteps);
    // Drive motor several steps, with delay in between steps
